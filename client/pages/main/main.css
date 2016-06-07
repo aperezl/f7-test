@@ -427,6 +427,12 @@ html.with-statusbar-overlay body .panel {
 	.view-main .navbar .left .open-panel {
 		display: none;
 	}
+
+	.panel-left.panel-reveal {
+			margin-left: 0;
+			z-index: 10000;
+	}
+
 }
 @media (min-width: 1270px) {
 	.panel.panel-left.panel-reveal {
@@ -451,6 +457,12 @@ html.with-statusbar-overlay body .panel {
     .view-main .navbar .open-panel {
 		display: none;
 	}
+
+	.panel-left.panel-reveal {
+	    margin-left: 0;
+	    z-index: 10000;
+	}
+
 }
 .notifications .item-text {
 	display: block;

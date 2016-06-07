@@ -5,42 +5,56 @@
         <img src="http://lorempixel.com/68/68/people/3/" style="margin-top: 50px; width: 100px; height: 100px; border-radius: 50%; border: 5px solid #ffffff;" />
       </div>
 
-      <ul style="margin-top: 66px; font-size: 1.3em">
-        <li>
-          <a href="{{pathFor route='home'}}">
-            <i class="fa fa-home"></i> Inicio</a>
-        </li>
+      <div class="list-block">
+        <ul style="margin-top: 66px;">
+          <li>
+            <a href="{{pathFor route='home'}}" class="item-link item-content">
+              <div class="item-media"><i class="icon fa fa-lg fa-home"></i></div>
+              <div class="item-inner">
+                <div class="item-title">Home</div>
+              </div>
+            </a>
+          </li>
 
-        <li>
-          <a href="{{pathFor route='timeline'}}">
-            <i class="fa fa-home"></i> Timeline</a>
-        </li>
+          <li>
+            <a href="{{pathFor route='timeline'}}" class="item-link item-content">
+              <div class="item-media"><i class="icon fa fa-lg fa-th-list"></i></div>
+              <div class="item-inner">
+                <div class="item-title">Timeline</div>
+              </div>
+            </a>
+          </li>
 
-        <li>
-          <a href="{{pathFor route='login'}}">
-            <i class="fa fa-home"></i> Login</a>
-        </li>
+          <li>
+            <a href="{{pathFor route='login'}}" class="item-link item-content">
+              <div class="item-media"><i class="icon fa fa-lg fa-sign-out"></i></div>
+              <div class="item-inner">
+                <div class="item-title">Logout</div>
+              </div>
+            </a>
+          </li>
 
-        <li>
-          <a href="{{pathFor route='themes'}}">
-            <i class="fa fa-home"></i> Themes</a>
-        </li>
+          <li>
+            <a href="{{pathFor route='themes'}}" class="item-link item-content">
+              <div class="item-media"><i class="icon fa fa-lg fa-plus"></i></div>
+              <div class="item-inner">
+                <div class="item-title">New Group</div>
+              </div>
+            </a>
+          </li>
 
-        <li>
-          <a href="{{pathFor route='chat'}}">
-            <i class="fa fa-home"></i> Chat</a>
-        </li>
+          <li>
+            <a href="{{pathFor route='chat'}}" class="item-link item-content">
+              <div class="item-media"><i class="icon fa fa-lg fa-comment"></i></div>
+              <div class="item-inner">
+                <div class="item-title">Chats</div>
+              </div>
+            </a>
+          </li>
 
-        <li>
-          <a href="#">
-            <i class="fa fa-home"></i> Inicio</a>
-        </li>
+        </ul>
+      </div>
 
-        <li>
-          <a href="#">
-            <i class="fa fa-home"></i> Inicio</a>
-        </li>
-      </ul>
     </div>
   </div>
 </template>
