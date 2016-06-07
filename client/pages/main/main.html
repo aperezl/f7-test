@@ -10,7 +10,7 @@
 </head>
 
 <body>
-{{>Layout}}
+
 </body>
 
 <template name="Layout">
@@ -22,18 +22,5 @@
 
 
   <div class="panel-overlay"></div>
-  <div class="views tabs toolbar-through">
-    <div id="homeView" class="view view-main tab active" data-page="homeView">
-      {{> NavBar}}
-      {{> ToolBar}}
-      <div class="pages navbar-through">
-        <div data-page="homeView" class="page">
-          <div data-distance="50" class="page-content">
-            {{>yield}}
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  {{>yield}}
 </template>

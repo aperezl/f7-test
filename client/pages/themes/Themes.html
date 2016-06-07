@@ -1,0 +1,41 @@
+<template name="Themes">
+
+  <div class="views tabs toolbar-through">
+    <div id="homeView" class="view view-main tab active" data-page="homeView">
+      <div class="pages navbar-through">
+        <div data-page="homeView" class="page">
+          {{> NavBar}}
+          <div data-distance="50" class="page-content">
+
+            <div class="content-block-title">New Theme</div>
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" placeholder="Your name" class="">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <textarea placeholder="Description" class=""></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</template>

@@ -1,5 +1,21 @@
 <template name="Chat">
 
+  <div class="views tabs toolbar-through">
+    <div id="homeView" class="view view-main tab active" data-page="homeView">
+      <div class="pages navbar-through">
+        <div data-page="homeView" class="page">
+          {{> NavBar}}
+
+          <!-- messagebar -->
+<div class="toolbar messagebar">
+<div class="toolbar-inner">
+  <textarea placeholder="Message"></textarea><a href="#" class="link">Send</a>
+</div>
+</div>
+          <div class="page-content messages-content">
+
+
+
   <div class="messages messages-auto-layout">
   <div class="messages-date">Sunday, Feb 9,<span class="">12:58</span></div>
   <div class="message message-sent message-first">
@@ -70,6 +86,12 @@
   </div>
   </div>
 
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </template>

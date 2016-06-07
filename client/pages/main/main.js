@@ -39,11 +39,14 @@ Router.route('/service', function() {
 
 Template.Layout.onRendered(function() {
 
+/*
   f7 = new Framework7({
     router: false,
     swipeBackPage: true,
     animatePages: true,
   });
+  console.log('REnder main')
+  */
 /*
   mainView = f7.addView('.view-main', {
     onSwipeBackBeforeChange: function(callbackData) {
