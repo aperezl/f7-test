@@ -1,5 +1,5 @@
 Template.ListGroups.events({
-  'click': function(event, instance) {
+  'click .item-link': function(event, instance) {
     if($( window ).width() < 767) {
       $('.panel.panel-left.panel-cover').css('left', '-100%');
     }

@@ -17,6 +17,19 @@ Router.route('/list', function () {
   this.render('List');
 });
 
+Router.route('/timeline', function() {
+  this.render('TimeLine');
+});
+
+Router.route('/login', function() {
+  this.render('Login')
+});
+
+Router.route('/themes', function() {
+  this.render('Themes');
+});
+
+
 Router.route('/service', function() {
   console.log('Renderizando services');
   this.render('Services')
@@ -28,44 +41,29 @@ Template.Layout.onRendered(function() {
 
   f7 = new Framework7({
     router: false,
-    swipeBackPage: false,
-    animatePages: false,
-    swipePanel: 'left'
+    swipeBackPage: true,
+    animatePages: true,
   });
-
+/*
   mainView = f7.addView('.view-main', {
     onSwipeBackBeforeChange: function(callbackData) {
-      console.log('cargando view main');
       history.back();
-    },
-    dynamicNavbar: true,
-    animatePages: false,
-    swipeBackPage: false,
-    reloadPages: true,
-    preloadPreviousPage: false
+    }
   });
 
   leftView = f7.addView('.view-left', {
     dynamicNavbar: true
   });
 
+*/
+
 
   this.find('.pages')._uihooks = {
     insertElement: function(node, next) {
       mainView.router.loadContent(node);
-      console.log('Enrutando')
     },
     removeElement: function(node) {
       return true;
     }
   };
 });
-
-
-
-Template.Layout.events({
-  'click .icon-back': function() {
-    console.log('---');
-    $('.panel.panel-left.panel-cover').css('left', 0)
-  }
-})

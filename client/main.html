@@ -10,117 +10,28 @@
 </head>
 
 <body>
-  <div class="statusbar-overlay"></div>
-    <div class="panel panel-right panel-reveal">
-      Right Bar
-    </div>
+{{>Layout}}
 </body>
 
-
-
 <template name="Layout">
-  <div class="views">
-    <div class="panel-overlay"></div>
-    <div class="panel panel-left panel-cover">
-      <div class="view view-left navbar-through" data-page="index">
-        {{> NavBar}}
-        <div class="pages">
-          <div class="page" data-page="index">
-            <div class="page-content">
-              {{> ListGroups}}
-            </div>
-          </div>
+  <div class="statusbar-overlay"></div>
+
+  {{> PanelRight}}
+
+  {{> PanelLeft}}
 
 
-        </div>
-
-
-
-
-      </div>
-    </div>
-
-    <div class="view view-main navbar-through" data-page="item">
-      <div class="navbar">
-        <div class="navbar-inner navbar-on-center">
-          <div class="left sliding">
-            <!-- Panel link for split view -->
-            <a href="#" class="open-panel link"> open</a>
-            <!-- Back link for single view -->
-            <a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a>
-          </div>
-          <div class="center sliding">Leaving the Nest</div>
-          <div class="right sliding">
-            <!-- User link for small screen -->
-            <a href="#" data-panel="right" class="open-panel link">
-              + info
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pages">
-        <div class="page page-on-center toolbar-fixed" data-page="item">
-          <!-- messagebar -->
-          <div class="toolbar toolbar-bottom messagebar">
-            <div class="toolbar-inner">
-              <textarea placeholder="Message"></textarea><a href="#" class="link">Send</a>
-            </div>
-          </div>
-          
-          <div class="page-content">
+  <div class="panel-overlay"></div>
+  <div class="views tabs toolbar-through">
+    <div id="homeView" class="view view-main tab active" data-page="homeView">
+      {{> NavBar}}
+      {{> ToolBar}}
+      <div class="pages navbar-through">
+        <div data-page="homeView" class="page">
+          <div data-distance="50" class="page-content">
             {{>yield}}
           </div>
         </div>
-      </div>
-    </div>
-
-  </div>
-</template>
-
-
-
-<template name="NavBar">
-  <div class="navbar">
-		<div class="navbar-inner">
-			<div class="left"><a href="#" class="link icon-only refresh-link refresh-home"><i class="icon icon-refresh"></i></a>
-			</div>
-      <div class="left sliding">
-            <!-- Panel link for split view -->
-            <a href="#" class="open-panel link icon-only"> <i class="icon icon-bars"></i></a>
-            <!-- Back link for single view -->
-            <a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a>
-          </div>
-			<div class="center sliding">
-				<span class="mobile-title">HackerNews7</span>
-				<span class="tablet-title">Top Stories</span>
-			</div>
-		</div>
-	</div>
-</template>
-
-<template name="Home">
-  <div data-page="home" class="page">
-    <div class="page-content">
-
-      <div class="content-block">
-        <h1>Home</h1>
-        <p>This is a simple example to integrate Framework7 into Meteor routing. Click the link below...</p>
-        <p><a href="{{pathFor route='list'}}" class="">List</a></p>
-      </div>
-
-    </div>
-  </div>
-</template>
-
-<template name="List">
-  <div data-page="home" class="page">
-    <div class="page-content">
-
-      <div class="content-block">
-        <h1>List</h1>
-        <p>Great, now try to swipe back the page to go back, like you would on iOS.</p>
-        <p><a href="{{pathFor route='home'}}" class="back">Home</a></p>
       </div>
 
     </div>
