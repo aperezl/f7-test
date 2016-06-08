@@ -5,4 +5,4 @@ Template.ListGroups.events({
     }
     //$('div.list-block.media-list.stories-list.list-block-search.searchbar-found').hide()
   }
-})
+});
