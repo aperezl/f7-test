@@ -1,11 +1,15 @@
 Router.configure({
-  layoutTemplate: 'Layout'
+  layoutTemplate: 'Layout',
+  onStop: function() {
+  }
 });
-
 Router.route('home', function () {
   this.render('Home');
 }, {
-  path: '/'
+  path: '/',
+  action: function() {
+    console.log('f7', f7);
+  }
 });
 
 Router.route('/chat', function () {
@@ -33,40 +37,4 @@ Router.route('/themes', function() {
 Router.route('/service', function() {
   console.log('Renderizando services');
   this.render('Services')
-})
-
-// Init Framework7
-
-Template.Layout.onRendered(function() {
-
-/*
-  f7 = new Framework7({
-    router: false,
-    swipeBackPage: true,
-    animatePages: true,
-  });
-  console.log('REnder main')
-  */
-/*
-  mainView = f7.addView('.view-main', {
-    onSwipeBackBeforeChange: function(callbackData) {
-      history.back();
-    }
-  });
-
-  leftView = f7.addView('.view-left', {
-    dynamicNavbar: true
-  });
-
-*/
-
-
-  this.find('.pages')._uihooks = {
-    insertElement: function(node, next) {
-      mainView.router.loadContent(node);
-    },
-    removeElement: function(node) {
-      return true;
-    }
-  };
 });

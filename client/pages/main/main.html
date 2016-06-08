@@ -15,12 +15,16 @@
 
 <template name="Layout">
   <div class="statusbar-overlay"></div>
-
-  {{> PanelRight}}
+  <div class="panel-overlay"></div>
 
   {{> PanelLeft}}
+  {{> PanelRight}}
 
 
-  <div class="panel-overlay"></div>
+  <div class="views">
+    <div id="homeView" class="view view-main tab active" data-page="homeView">
+
+
   {{>yield}}
+</div></div>
 </template>
