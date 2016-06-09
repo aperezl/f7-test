@@ -1,25 +1,15 @@
 Template.Layout.onCreated(function() {
-  console.log('Se carga Layout');
-  f7 = new Framework7({
-    router: false,
-    swipeBackPage: false,
-    animatePages: true,
-    materialRipple: false,
-    cache: false,
-    sortable: false,
-    swipeout: false,
-    onPageInit: function (app, page) {
-      console.log('app', app);
-      console.log('page', page);
-    },
-    preprocess: function (content, url, next) {
-      console.log('preprocess')
-    }
 
+
+  f7 = new Framework7({
+    fastClicks: false,
+    material: true,
+    pushState: true,
+    materialRippleElements: '',
+    swipePanel: 'left',
+    materialRipple: false
 
   });
-  console.log('REnder main')
-
 /*
   mainView = f7.addView('.view-main', {
     onSwipeBackBeforeChange: function(callbackData) {
@@ -30,12 +20,12 @@ Template.Layout.onCreated(function() {
     dynamicNavbar: true
   });
   */
+  console.log($('.views'));
 
 
 });
 
 Template.Layout.onRendered(function() {
-
   this.find('.pages')._uihooks = {
     insertElement: function(node, next) {
       mainView.router.loadContent(node);

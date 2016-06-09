@@ -1,3 +1,8 @@
+Template.Layout.onRendered(function() {
+  
+})
+
+
 Router.configure({
   layoutTemplate: 'Layout',
   onStop: function() {

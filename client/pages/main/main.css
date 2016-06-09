@@ -1,3 +1,8 @@
+
+.views > .panel {
+   padding-top:0;
+}
+
 .fa {
 	padding-top: 5px;
 }

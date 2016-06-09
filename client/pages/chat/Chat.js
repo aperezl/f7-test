@@ -1,5 +1,6 @@
 Template.Chat.onRendered(function() {
 
+
   myMessagebar = f7.messagebar('.messagebar', {
     maxHeight: 200
   });
@@ -7,6 +8,7 @@ Template.Chat.onRendered(function() {
   myMessages = f7.messages('.messages', {
     autoLayout:true
   });
+
 })
 
 function addMessage() {
