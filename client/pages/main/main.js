@@ -1,5 +1,5 @@
 Template.Layout.onRendered(function() {
-  
+
 })
 
 
@@ -36,6 +36,10 @@ Router.route('/login', function() {
 
 Router.route('/themes', function() {
   this.render('Themes');
+});
+
+Router.route('/webcam', function() {
+  this.render('Webcam');
 });
 
 
