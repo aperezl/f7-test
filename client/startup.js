@@ -20,7 +20,7 @@ Template.Layout.onCreated(function() {
     dynamicNavbar: true
   });
   */
-  console.log($('.views'));
+
 
 
 });

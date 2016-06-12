@@ -1,17 +1,22 @@
 Template.Chat.onRendered(function() {
 
+  Meteor.subscribe('messages');
+  console.log('Messages', Messages);
+  console.log('Messages', Messages.find().fetch());
 
   myMessagebar = f7.messagebar('.messagebar', {
     maxHeight: 200
   });
 
   myMessages = f7.messages('.messages', {
-    autoLayout:true
+    autoLayout: true
   });
+  myMessages.init();
 
 })
 
 function addMessage() {
+
   var messageText = myMessagebar.value().trim();
   if (messageText.length === 0) return;
   myMessagebar.clear()
@@ -23,14 +28,23 @@ function addMessage() {
   }
 
   var conversationStarted = false;
+  Meteor.call('demo', {text: messageText, to: "8vAXgQzcSH7PJbjTZ"}, function(error, result) {
+    console.log('error', error);
+    console.log('result', result);
+    myMessages.scrollMessages();
+    //myMessages.layout();
+  });
+
+  /*
   myMessages.addMessage({
     text: messageText,
     type: messageType,
     avatar: avatar,
     name: name,
-    day: !conversationStarted ? 'Today' : false,
-    time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+    //day: !conversationStarted ? 'Today' : false,
+    //time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
   });
+  */
 
   conversationStarted = true;
 }
@@ -38,6 +52,7 @@ function addMessage() {
 
 Template.Chat.events({
   'click .messagebar .link': function(event, instance) {
+
     addMessage();
 
   },
@@ -49,4 +64,12 @@ Template.Chat.events({
       }
   }
 
+});
+
+
+Template.Chat.helpers({
+  messages: function() {
+    console.log('helpers', Messages.find().count());
+    return Messages.find();
+  }
 })

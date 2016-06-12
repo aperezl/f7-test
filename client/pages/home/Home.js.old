@@ -1,0 +1,138 @@
+Template.HomeContent.onRendered(function() {
+  console.log('renderizado');
+  localVideo;
+  remoteVideo;
+  var peerConnection;
+  peerConnectionConfig = {'iceServers': [{'url': 'stun:stun.services.mozilla.com'}, {'url': 'stun:stun.l.google.com:19302'}]};
+
+  navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+  window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+  window.RTCIceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate || window.webkitRTCIceCandidate;
+  window.RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription || window.webkitRTCSessionDescription;
+
+
+
+  function start(isCaller) {
+      console.log('start', isCaller);
+      peerConnection = new RTCPeerConnection(peerConnectionConfig);
+      peerConnection.onicecandidate = gotIceCandidate;
+      peerConnection.onaddstream = gotRemoteStream;
+      peerConnection.addStream(localStream);
+
+      if(isCaller) {
+          peerConnection.createOffer(gotDescription, createOfferError);
+      }
+  }
+
+  function gotDescription(description) {
+      console.log('got description');
+      peerConnection.setLocalDescription(description, function () {
+          serverConnection.send(JSON.stringify({'sdp': description}));
+      }, function() {console.log('set description error')});
+  }
+
+  function gotIceCandidate(event) {
+      if(event.candidate != null) {
+          serverConnection.send(JSON.stringify({'ice': event.candidate}));
+      }
+  }
+
+  function gotRemoteStream(event) {
+      console.log("got remote stream");
+      remoteVideo.src = window.URL.createObjectURL(event.stream);
+  }
+
+  function createOfferError(error) {
+      console.log(error);
+  }
+
+  function getUserMediaSuccess(stream) {
+    localStream = stream;
+    localVideo.src = window.URL.createObjectURL(stream);
+}
+
+function getUserMediaError(error) {
+    console.log(error);
+}
+
+
+
+
+
+
+
+
+
+
+
+  var pageReady = function() {
+    localVideo = document.getElementById('localVideo');
+    console.log('Capturado localVideo placeholder');
+    remoteVideo = document.getElementById('remoteVideo');
+    console.log('Capturado remoteVideo placeholder');
+
+    serverConnection = new WebSocket('ws://localhost:3434');
+    console.log('serverConnection established');
+
+    serverConnection.onmessage = function(message) {
+      //console.log('onmessage', message);
+      console.log('onmessage');
+      console.log('peerConnection', !!peerConnection);
+      if(!peerConnection) start(false);
+
+      var signal = JSON.parse(message.data);
+      //console.log('onmessage - signal', signal);
+      if(signal.sdp) {
+          peerConnection.setRemoteDescription(new RTCSessionDescription(signal.sdp), function() {
+              peerConnection.createAnswer(gotDescription, function(e) { console.log('error', e)});
+          });
+      } else if(signal.ice) {
+          peerConnection.addIceCandidate(new RTCIceCandidate(signal.ice));
+      }
+  };
+
+    var constraints = {
+         video: true,
+         audio: false,
+     };
+
+     if(navigator.getUserMedia) {
+         navigator.getUserMedia(constraints, getUserMediaSuccess, getUserMediaError);
+     } else {
+         console.log('Your browser does not support getUserMedia API');
+     }
+  }
+
+  pageReady();
+});
+
+Template.HomeContent.events({
+  'click #start': function start(isCaller) {
+      function gotIceCandidate(event) {
+          if(event.candidate != null) {
+              serverConnection.send(JSON.stringify({'ice': event.candidate}));
+          }
+      }
+      function gotRemoteStream(event) {
+          console.log("got remote stream");
+          remoteVideo.src = window.URL.createObjectURL(event.stream);
+      }
+      function gotDescription(description) {
+          console.log('got description');
+          peerConnection.setLocalDescription(description, function () {
+              serverConnection.send(JSON.stringify({'sdp': description}));
+          }, function() {console.log('set description error')});
+      }
+      function createOfferError(error) {
+          console.log(error);
+      }
+      peerConnection = new RTCPeerConnection(peerConnectionConfig);
+      peerConnection.onicecandidate = gotIceCandidate;
+      peerConnection.onaddstream = gotRemoteStream;
+      peerConnection.addStream(localStream);
+
+      if(true) {
+          peerConnection.createOffer(gotDescription, createOfferError);
+      }
+  }
+})

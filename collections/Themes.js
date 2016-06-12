@@ -16,3 +16,17 @@ Themes.attachSchema(new SimpleSchema({
       max: 1000
     }
 }));
+
+Messages = new Mongo.Collection('messages');
+Messages.attachSchema(new SimpleSchema({
+  from: {
+    type: String
+  },
+  to: {
+    type: String
+  },
+  text: {
+    type: String,
+    max: 1000
+  }
+}));

@@ -47,3 +47,7 @@ Router.route('/service', function() {
   console.log('Renderizando services');
   this.render('Services')
 });
+
+Router.route('/videochat', function() {
+  this.render('Videochat');
+});

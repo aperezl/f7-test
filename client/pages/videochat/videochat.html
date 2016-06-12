@@ -1,20 +1,17 @@
-<template name="Home">
+<template name="Videochat">
       <div class="pages">
         <div data-page="homeView" class="page">
           {{> NavBar}}
-          <div data-distance="50" class="page-content">
-            {{> loginButtons}}
-            {{#if currentUser}}
-              {{> HomeContent}}
-            {{/if}}
+          <div class="page-content">
+              {{> VideochatContent}}
           </div>
         </div>
       </div>
 </template>
 
-<template name="HomeContent">
+<template name="VideochatContent">
   <video id="localVideo" autoplay muted style="width:40%;"></video>
   <video id="remoteVideo" autoplay style="width:40%;"></video>
-  <br />
   <input type="button" id="start" value="Start Video" />
+
 </template>

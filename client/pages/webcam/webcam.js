@@ -26,8 +26,6 @@ var streaming = false,
                          navigator.mozGetUserMedia ||
                          navigator.msGetUserMedia);
 
-    console.log('navigator.getMedia', navigator.getMedia);
-
     navigator.getMedia({
       video: true,
       audio: false
@@ -47,10 +45,21 @@ var streaming = false,
 
 
 
+    video.addEventListener('canplay', function(event) {
+      if(!streaming) {
+        video.setAttribute('width', $(".page-content").width());
+        console.log('video.videoWidth', video.videoWidth)
+      }
+    }, false);
 
+/*
     video.addEventListener('canplay', function(ev){
       if (!streaming) {
         height = video.videoHeight / (video.videoWidth/width);
+        console.log('---------canplay---------');
+        console.log('video.videoHeight', video.videoHeight);
+        console.log('width', width);
+        console.log('height', height);
         video.setAttribute('width', width);
         video.setAttribute('height', height);
         canvas.setAttribute('width', width);
@@ -58,16 +67,18 @@ var streaming = false,
         streaming = true;
       }
     }, false);
-    
+*/
     function takepicture() {
        canvas.width = width;
        canvas.height = height;
        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
        var data = canvas.toDataURL('image/png');
+       console.log('data', data);
        photo.setAttribute('src', data);
      }
 
      startbutton.addEventListener('click', function(ev){
+       console.log('Capturamos una foto');
        takepicture();
       ev.preventDefault();
     }, false);
