@@ -1,6 +1,22 @@
 <template name="PanelRight">
   <div class="panel panel-right panel-reveal">
 
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="center">Center</div>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
+      <div class="searchbar-input">
+        <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+      </div><a href="#" class="searchbar-cancel">Cancel</a>
+    </form>
+
+    <!-- Search Bar overlay -->
+    <div class="searchbar-overlay"></div>
+    
     <div class="content-page">
       {{> ContactList}}
     </div>
@@ -9,7 +25,7 @@
 
 
 <template name="ContactList">
-  
+
   <div class="list-block media-list inset">
   <ul>
     {{#each friends}}
@@ -27,7 +43,7 @@
                 <div class="item-title">{{#each emails}}{{address}}{{/each}}</div>
                 <div class="item-after"><span class="badge {{#if status _id}}bg-green{{else}}bg-off{{/if}}"></span></div>
               </div>
-              <div class="item-subtitle">{{status _id}}</div>
+              <div class="item-subtitle">{{_id}}</div>
 
             </div>
           </div>

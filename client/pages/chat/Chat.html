@@ -1,6 +1,6 @@
 <template name="Chat">
       <div class="pages">
-        <div data-page="homeView" class="page toolbar-fixed">
+        <div data-page="homeView" class="page navbar-fixed toolbar-fixed">
           {{> NavBar}}
 
           <div class="toolbar messagebar">
@@ -11,26 +11,26 @@
           </div>
 
           <div class="page-content messages-content">
+
             <div class="messages messages-auto-layout">
 
-              <!-- Message sent -->
-              <div class="message message-sent message-with-avatar">
-                <div class="message-text">Hi, Kate</div>
-                <div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div>
-              </div>
-
-              <!-- Message received -->
-              <div class="message message-received message-with-avatar">
-                <div class="message-name">Kate Johnson</div>
-                <div class="message-text">Hi, i am good</div>
-                <div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div>
-              </div>
-
               {{#each messages}}
-                <div class="message message-sent message-with-avatar">
-                  <div class="message-text">{{text}}</div>
-                  <div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div>
-                </div>
+
+                {{#if isSender}}
+                  <div class="message message-sent message-with-avatar">
+                    <div class="message-text">{{text}}</div>
+                    <div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div>
+                  </div>
+                {{else}}
+                  <!-- Message received -->
+                  <div class="message message-received message-with-avatar">
+                    <div class="message-name">Kate Johnson</div>
+                    <div class="message-text">{{text}}</div>
+                    <div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div>
+                  </div>
+                {{/if}}
+
+
               {{/each}}
 
 

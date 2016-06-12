@@ -1,6 +1,6 @@
 Template.Chat.onRendered(function() {
 
-  Meteor.subscribe('messages');
+  //Meteor.subscribe('messages');
   console.log('Messages', Messages);
   console.log('Messages', Messages.find().fetch());
 
@@ -13,7 +13,7 @@ Template.Chat.onRendered(function() {
   });
   myMessages.init();
 
-})
+});
 
 function addMessage() {
 
@@ -28,7 +28,8 @@ function addMessage() {
   }
 
   var conversationStarted = false;
-  Meteor.call('demo', {text: messageText, to: "8vAXgQzcSH7PJbjTZ"}, function(error, result) {
+  console.log('Router.current().params', Router.current().params._id)
+  Meteor.call('demo', {text: messageText, to: Router.current().params._id}, function(error, result) {
     console.log('error', error);
     console.log('result', result);
     myMessages.scrollMessages();
@@ -69,7 +70,9 @@ Template.Chat.events({
 
 Template.Chat.helpers({
   messages: function() {
-    console.log('helpers', Messages.find().count());
     return Messages.find();
+  },
+  isSender: function() {
+    return this.from===Meteor.userId();
   }
 })

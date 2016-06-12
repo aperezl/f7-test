@@ -20,7 +20,7 @@ Template.VideochatContent.onRendered(function() {
   _uuid = uuid();
   this.localVideo = document.getElementById('localVideo');
   this.remoteVideo = document.getElementById('remoteVideo');
-  serverConnection = new WebSocket('ws://192.168.1.131:3434');
+  serverConnection = new WebSocket('ws://192.168.1.132:3434');
   serverConnection.onmessage = function(message) {
     if(!peerConnection) start(false);
 
@@ -50,7 +50,7 @@ Template.VideochatContent.onRendered(function() {
 
   var constraints = {
     video: true,
-    audio: false,
+    audio: true,
   };
   if(navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia(constraints)
@@ -104,6 +104,10 @@ function start() {
   }
   peerConnection.onaddstream = function(event) {
     remoteVideo.src = window.URL.createObjectURL(event.stream);
+    console.log('platform', navigator.platform);
+    if(navigator.platform === "iPhone") {
+      cordova.plugins.iosrtc.selectAudioOutput('speaker');
+    }
   }
   peerConnection.addStream(localStream);
 }
