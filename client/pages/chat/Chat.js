@@ -1,9 +1,5 @@
 Template.Chat.onRendered(function() {
 
-  //Meteor.subscribe('messages');
-  console.log('Messages', Messages);
-  console.log('Messages', Messages.find().fetch());
-
   myMessagebar = f7.messagebar('.messagebar', {
     maxHeight: 200
   });
@@ -11,9 +7,20 @@ Template.Chat.onRendered(function() {
   myMessages = f7.messages('.messages', {
     autoLayout: true
   });
-  myMessages.init();
+
+  var started = false
+  Messages.find().observe({
+    added: function(record) {
+      if(started) {
+        console.log('Added', record);
+        myMessages.scrollMessages();
+      }
+    }
+  });
+  var started = true;
 
 });
+
 
 function addMessage() {
 
@@ -58,7 +65,7 @@ Template.Chat.events({
 
   },
   'keypress .messagebar': function(event) {
-    if (event.which === 13) {
+    if (event.which === 13 &&  event.shiftKey == false) {
          //event.stopPropagation();
          addMessage();
          return false;

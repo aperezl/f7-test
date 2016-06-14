@@ -1,23 +1,31 @@
-import { Meteor } from 'meteor/meteor';
-
 Meteor.startup(() => {
-  // code to run on server at startup
 
-});
 
-Meteor.publish('presences', function() {
-  return Presences.find({}, { userId: true });
-});
-Meteor.publish("users", function () {
-  return Meteor.users.find({}, {fields: {"profile.peerId": true, "emails.address": true} });
-});
+  InstanceStatus.events.on('registerInstance', function(id, record) {
+    console.log('registerInstance, pid:', record.pid);
+  });
+  InstanceStatus.registerInstance('Test');
+	InstanceStatus.activeLogs();
+  //SERVER
+  InstanceStatus.getCollection().find({}).observeChanges({
+    added: function(id) {
+      console.log('New Instance:', id);
+    },
+    removed: function(id) {
+      console.log('Deleted Instance:', id);
+    }
+  });
 
-Meteor.publish('user', function(id) {
-  return Meteor.users.find(id, {fields: {"profile.peerId": true, "emails.address": true} });
+  UserPresenceMonitor.start();
+  UserPresence.start();
+  UserPresence.activeLogs();
+
 });
 
 Meteor.publish('allusers', function() {
-  return Meteor.users.find({});
+  return Meteor.users.find({}, {
+    sort: {'presence.status': -1}
+  });
 });
 
 Meteor.publish('messages', function(id) {
@@ -47,3 +55,9 @@ Meteor.methods({
     return 'is all ok';
   }
 })
+
+
+
+Meteor.publish('files.images.all', function () {
+  return Images.collection.find({});
+});

@@ -16,7 +16,7 @@
 
     <!-- Search Bar overlay -->
     <div class="searchbar-overlay"></div>
-    
+
     <div class="content-page">
       {{> ContactList}}
     </div>
@@ -41,7 +41,7 @@
             <div class="item-inner">
               <div class="item-title-row">
                 <div class="item-title">{{#each emails}}{{address}}{{/each}}</div>
-                <div class="item-after"><span class="badge {{#if status _id}}bg-green{{else}}bg-off{{/if}}"></span></div>
+                <div class="item-after"><span class="badge bg-{{status}}"></span></div>
               </div>
               <div class="item-subtitle">{{_id}}</div>
 

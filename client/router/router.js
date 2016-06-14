@@ -9,7 +9,8 @@ Router.route('home', function () {
   path: '/',
   action: function() {
     console.log('f7', f7);
-  }
+  },
+  //fastRender: true
 });
 
 
@@ -21,35 +22,53 @@ Router.route('/chat/:_id', {
   },
   data: function() {
     return this.params
-  }
+  },
+  //fastRender: true
 })
 
-Router.route('/list', function () {
-  this.render('List');
+Router.route('/list', {
+  name: 'list',
+  template: 'List'
 });
 
-Router.route('/timeline', function() {
-  this.render('TimeLine');
+Router.route('/timeline', {
+  name: 'timeline',
+  template: 'TimeLine'
 });
 
-Router.route('/login', function() {
-  this.render('Login')
+Router.route('/login', {
+  name: 'login',
+  template: 'Login'
 });
 
-Router.route('/themes', function() {
-  this.render('Themes');
+Router.route('/themes', {
+  name: 'themes',
+  template: 'Themes'
 });
 
-Router.route('/webcam', function() {
-  this.render('Webcam');
+Router.route('/webcam', {
+  name: 'webcam',
+  template: 'Webcam'
 });
 
 
-Router.route('/service', function() {
-  console.log('Renderizando services');
-  this.render('Services')
+Router.route('/service', {
+  name: 'service',
+  template: 'Services'
 });
 
-Router.route('/videochat', function() {
-  this.render('Videochat');
+Router.route('/videochat', {
+  name: 'videochat',
+  template: 'Videochat'
+});
+
+Router.route('/group', {
+  name: 'group',
+  template: 'Group'
+});
+
+Router.route('group.form', {
+  name: 'group.form',
+  template: 'GroupForm',
+  path: '/group/new'
 });

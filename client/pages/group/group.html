@@ -1,0 +1,94 @@
+<template name="Group">
+      <div class="pages">
+        <div data-page="homeView" class="page navbar-fixed">
+          {{> NavBar}}
+          <div class="page-content">
+              {{> GroupContent}}
+          </div>
+
+
+
+
+        </div>
+
+
+      </div>
+
+</template>
+
+
+
+<template name="GroupContent">
+
+  <div class="card card-header-pic">
+    <div style="background-image:url(https://unsplash.it/1000/700?random)" valign="bottom" class="card-header color-white no-border">
+      Grupo privado para el desarrollo de la aplicación "sin nombre"
+    </div>
+    <div class="card-content" style="display: none">
+      <div class="card-content-inner">
+        <p class="color-gray">Posted on January 21, 2015</p>
+        <p>Quisque eget vestibulum nulla...</p>
+      </div>
+    </div>
+
+
+    <div class="card-footer">
+
+
+      <div class="toolbar tabbar tabbar-labels">
+          <div class="toolbar-inner">
+              <a href="#tab1" class="tab-link active">
+                  <i class="icon fa fa-2x fa-comment">
+                    <span class="badge bg-red">5</span>
+                  </i>
+                  <span class="tabbar-label">Chat</span>
+              </a>
+              <a href="#tab2" class="tab-link">
+                  <i class="icon fa fa-2x fa-user-plus"></i>
+                  <span class="tabbar-label">Añadir usuario</span>
+              </a>
+              <a href="http://www.google.com" class="tab-link">
+                  <i class="icon fa fa-2x fa-picture-o"></i>
+                  <span class="tabbar-label">Albumes</span>
+              </a>
+              <a href="#" data-popover=".popover-links" class="tab-link open-popover">
+                  <i class="icon fa fa-2x fa-bars"></i>
+                  <span class="tabbar-label">Más</span>
+              </a>
+          </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+  {{>HomeUpload}}
+  <!--
+  <div id="basicExample">
+    <a href="http://lorempixel.com/1000/700/nature/1">
+        <img alt="caption for image 1" src="https://unsplash.it/320/240?random&i=0" />
+    </a>
+  </div>
+-->
+
+
+
+  <div class="popover popover-links popover-on-bottom" style="display: none; top: 228px; left: 16px;">
+  <div class="popover-inner">
+  <div class="list-block">
+  <ul>
+  <li><a href="#" class="list-button item-link">Modals</a></li>
+  <li><a href="popover.html" class="list-button item-link">Popover</a></li>
+  <li><a href="tabs.html" class="list-button item-link">Tabs</a></li>
+  <li><a href="panels.html" class="list-button item-link">Side Panels</a></li>
+  <li><a href="list-view.html" class="list-button item-link">List View</a></li>
+  <li><a href="forms.html" class="list-button item-link">Forms</a></li>
+  </ul>
+  </div>
+  </div>
+  </div>
+
+
+
+</template>

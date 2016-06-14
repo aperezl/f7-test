@@ -1,12 +1,17 @@
 <template name="Home">
       <div class="pages">
-        <div data-page="homeView" class="page">
+        <div data-page="homeView" class="page navbar-fixed">
           {{> NavBar}}
           <div data-distance="50" class="page-content">
-            {{> loginButtons}}
-            {{#if currentUser}}
-              {{> HomeContent}}
-            {{/if}}
+            <div class="content-block">
+              {{> loginButtons}}
+              {{#if currentUser}}
+                {{> HomeContent}}
+              {{/if}}
+              <hr />
+              {{> HomeUpload}}
+              <a href="{{pathFor route='group.form'}}">Nuevo Grupo</a>
+            </div>
           </div>
         </div>
       </div>
@@ -17,4 +22,26 @@
   <video id="remoteVideo" autoplay style="width:40%;"></video>
   <br />
   <input type="button" id="start" value="Start Video" />
+</template>
+
+
+<template name="HomeUpload">
+  <div style="border: 1px solid">
+    {{#if currentUpload}}
+      {{#with currentUpload}}
+        Uploading <b>{{file.name}}</b>:
+        <span id="progress">{{progress}}%</span>
+      {{/with}}
+    {{else}}
+      <input id="fileInput" type="file" />
+    {{/if}}
+  </div>
+
+  <div id="basicExample">
+    {{#each image in images}}
+      <a href="{{fileURL image}}">
+          <img alt="{{image.name}}" src="{{fileURL image}}" />
+      </a>
+    {{/each}}
+  </div>
 </template>

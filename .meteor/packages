@@ -20,6 +20,7 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 #insecure                # Allow all DB writes from clients (for prototyping)
 
 iron:router
+ccorcos:transitioner
 loftsteinn:framework7-material
 fortawesome:fontawesome
 aldeed:autoform
@@ -27,6 +28,16 @@ aldeed:collection2
 mystor:device-detection
 accounts-ui
 accounts-password
-tmeasday:presence
+accounts-facebook
+service-configuration
 meteorhacks:kadira
 check
+meteortoys:allthings
+meteorhacks:fast-render
+anbuselvan:justified-gallery
+konecty:user-presence
+konecty:multiple-instances-status
+random
+force-ssl
+ostrio:files
+fds:webrtc

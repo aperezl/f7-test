@@ -1,0 +1,36 @@
+.card-header-pic {
+  margin: 0;
+}
+
+.card-header-pic .card-header {
+    height: 35vw;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
+  }
+
+.card-header-pic .toolbar {
+  top: 0;
+}
+
+.card-footer {
+  padding: 0;
+}
+
+.toolbar {
+  background: #ffffff;
+}
+
+.tabbar a.tab-link {
+  color: #666666;
+  font-size: 11px;
+  text-transform: none;
+}
+
+.tabbar a.tab-link.active {
+  color: #DC7D34;
+}
+
+.modal-overlay.modal-overlay-visible {
+  visibility: hidden;
+}
